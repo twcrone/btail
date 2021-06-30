@@ -17,7 +17,7 @@ func main() {
 	now := time.Now()
 	sourceFileLocation := args[1]
 	destinationFileLocation := sourceFileLocation + "-" + now.Format("2006-01-02-15:04:05")
-	fmt.Printf("Tail New Relic")
+	fmt.Printf("Backup and Tail [%s]\n", sourceFileLocation)
 	input, err := ioutil.ReadFile(sourceFileLocation)
 	if err != nil {
 		fmt.Println(err)
