@@ -4,14 +4,18 @@ import (
 	"fmt"
 	"github.com/hpcloud/tail"
 	"io/ioutil"
+	"os"
 	"time"
 )
 
-
 func main() {
+	args := os.Args
+	if len(args) == 1 {
+		fmt.Println("Usage: btail <path-to-file>")
+		return
+	}
 	now := time.Now()
-	logDir := "/Users/tcrone/lib/newrelic/logs"
-	sourceFileLocation := logDir + "/newrelic_agent.log"
+	sourceFileLocation := args[1]
 	destinationFileLocation := sourceFileLocation + "-" + now.Format("2006-01-02-15:04:05")
 	fmt.Printf("Tail New Relic")
 	input, err := ioutil.ReadFile(sourceFileLocation)
