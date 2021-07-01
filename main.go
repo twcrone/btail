@@ -11,13 +11,17 @@ import (
 func main() {
 	args := os.Args
 	if len(args) == 1 {
-		fmt.Println("Usage: btail <path-to-file>")
+		fmt.Println("Usage: btail <path-to-file> [filename-suffix]")
 		return
+	}
+	var filenameSuffix = ""
+	if len(args) > 1 {
+		filenameSuffix = args[2]
 	}
 	now := time.Now()
 	sourceFileLocation := args[1]
-	destinationFileLocation := sourceFileLocation + "-" + now.Format("2006-01-02-15:04:05")
-	fmt.Printf("Backup and Tail [%s]\n", sourceFileLocation)
+	destinationFileLocation := sourceFileLocation + "-" + now.Format("2006-01-02-15:04:05") + "-" + filenameSuffix
+	fmt.Printf("Backup and Tail [%s] -> [%s]\n", sourceFileLocation, destinationFileLocation)
 	input, err := ioutil.ReadFile(sourceFileLocation)
 	if err != nil {
 		fmt.Println(err)
