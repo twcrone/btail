@@ -15,12 +15,12 @@ func main() {
 		return
 	}
 	var filenameSuffix = ""
-	if len(args) > 1 {
-		filenameSuffix = args[2]
+	if len(args) > 2 {
+		filenameSuffix = "-" + args[2]
 	}
 	now := time.Now()
 	sourceFileLocation := args[1]
-	destinationFileLocation := sourceFileLocation + "-" + now.Format("2006-01-02-15:04:05") + "-" + filenameSuffix
+	destinationFileLocation := sourceFileLocation + "-" + now.Format("2006-01-02-15:04:05") + filenameSuffix
 	fmt.Printf("Backup and Tail [%s] -> [%s]\n", sourceFileLocation, destinationFileLocation)
 	input, err := ioutil.ReadFile(sourceFileLocation)
 	if err != nil {
